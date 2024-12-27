@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypingFast", "TypingFast\TypingFast.csproj", "{CE7D4A42-DF06-44DD-9CF6-FBCCE3037027}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTypingFast", "TestTypingFast\TestTypingFast.csproj", "{356E6E17-6295-44F3-A8F9-B347D21C5C86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE7D4A42-DF06-44DD-9CF6-FBCCE3037027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7D4A42-DF06-44DD-9CF6-FBCCE3037027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7D4A42-DF06-44DD-9CF6-FBCCE3037027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7D4A42-DF06-44DD-9CF6-FBCCE3037027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{356E6E17-6295-44F3-A8F9-B347D21C5C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{356E6E17-6295-44F3-A8F9-B347D21C5C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{356E6E17-6295-44F3-A8F9-B347D21C5C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{356E6E17-6295-44F3-A8F9-B347D21C5C86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
