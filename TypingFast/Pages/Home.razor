@@ -1,7 +1,36 @@
 ﻿@page "/"
+@using TypingFast.Services
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+<div>
+    <h2>Words</h2>
+
+        @foreach (var word in words)
+        {
+            <span class="px-1">@word</span>
+            
+        }
+</div>
+    <button @onclick="NewTest" class="btn btn-primary">new</button>
+
+@code
+{
+    private string[] words;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        var wordsService = new WordsService();
+        words = wordsService.GetWords(10);
+    }
+
+    private void NewTest()
+    {
+        var wordsService = new WordsService();
+        words = wordsService.GetWords(10);
+    }
+}
