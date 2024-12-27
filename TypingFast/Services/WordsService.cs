@@ -19,7 +19,7 @@ public class WordsService
         }
     }
 
-    public string[] GetWords(int count)
+    public string[]? GetWords(int count)
     {
         var random = new Random();
         return _words.OrderBy(x => random.Next()).Take(count).ToArray();

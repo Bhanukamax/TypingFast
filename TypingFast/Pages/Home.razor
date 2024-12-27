@@ -8,29 +8,36 @@
 Welcome to your new app.
 <div>
     <h2>Words</h2>
-
-        @foreach (var word in words)
+    @if (_words == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else
+    {
+        @foreach (var word in _words)
         {
             <span class="px-1">@word</span>
-            
         }
+    }
 </div>
-    <button @onclick="NewTest" class="btn btn-primary">new</button>
+<button @onclick="NewTest" class="btn btn-primary">new</button>
 
 @code
 {
-    private string[] words;
+    private string[]? _words;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         var wordsService = new WordsService();
-        words = wordsService.GetWords(10);
+        _words = wordsService.GetWords(10);
     }
 
     private void NewTest()
     {
         var wordsService = new WordsService();
-        words = wordsService.GetWords(10);
+        _words = wordsService.GetWords(10);
     }
 }

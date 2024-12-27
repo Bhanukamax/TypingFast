@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+
 <div class="page">
     <div class="sidebar">
         <NavMenu/>
@@ -10,7 +11,18 @@
         </div>
 
         <article class="content px-4">
+            <button @onclick="ToggleDarkMode" class="btn btn-secondary">Toggle Dark Mode</button>
             @Body
         </article>
     </main>
 </div>
+
+@code {
+    [Inject] private IJSRuntime JS { get; set; }
+
+    private void ToggleDarkMode()
+    {
+        JS.InvokeVoidAsync("toggleDarkMode");
+    }
+
+}
