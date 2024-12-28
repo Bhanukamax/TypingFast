@@ -1,24 +1,36 @@
 @using TypingFast.Models
 @using TypingFast.Services
-<h3>TypingTestComponent</h3>
-
-
-<div class="d-flex flex-column p-2">
+<div class="d-flex flex-column gap-2">
     <WordDisplay Test="@_test"/>
+
     <div>
-        <input type="text" class="input"/>
+        <input type="text"
+               class="input @(_test.InputError ? "bg-danger-subtle" : "")"
+               @oninput="HandleInput"/>
+
+        <button @onclick="NewTest" class="btn btn-primary">new</button>
+    </div>
+    <div>
+        @CurrentInput
     </div>
 </div>
-<button @onclick="NewTest" class="btn btn-primary">new</button>
 
 @code{
 
     private TypingTest _test = new(new WordsService());
+    private string CurrentInput { get; set; } = "";
 
 
     private void NewTest()
     {
         _test.Restart();
+    }
+
+
+    private void HandleInput(ChangeEventArgs obj)
+    {
+        CurrentInput = obj.Value?.ToString() ?? "";
+        _test.CheckWord(CurrentInput);
     }
 
 }
