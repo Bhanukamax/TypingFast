@@ -1,9 +1,16 @@
+@using System.Diagnostics
 @using TypingFast.Models
 @using TypingFast.Services
 @inject IJSRuntime Js
 @* TODO: remove after testing *@
-<h2>Status: @_test.Status</h2>
-<h2>is last word: @_test.CurrentIndex @_test.GetWords().Length -> @(_test.CurrentIndex == _test.GetWords().Length)</h2>
+
+@if (IsDebug)
+{
+    <h2> App Status: @_test.Status </h2>
+    <h2> is last
+        word: @_test.CurrentIndex @_test.GetWords().Length-> @(_test.CurrentIndex == _test.GetWords().Length) </h2>
+}
+
 <div class="d-flex flex-column gap-2">
     <WordDisplay Test="@_test"/>
 
@@ -62,9 +69,22 @@
         {
             _test.CheckWord(CurrentInput, _test.GetWords().Length - 1 == _test.CurrentIndex);
         }
+
         if (_test.Status == TestStatus.Ended)
         {
             CurrentInput = "";
+        }
+    }
+
+    private bool IsDebug
+    {
+        get
+        {
+#if DEBUG
+            return true;
+#else
+            return false;
+#endif
         }
     }
 
