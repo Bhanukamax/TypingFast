@@ -1,11 +1,19 @@
 @using TypingFast.Models
 <div class="border-1 border border-primary word-display p-2">
-    @foreach (var word in Test.GetWords())
+    @foreach (var word in Test.GetWords().Select((w, i) => new { Word = w, Index = i }))
     {
-        <span class="px-1">@word</span>
+        var cssClass = "px-1 ";
+        if (Test.CurrentIndex == word.Index)
+        {
+            cssClass += Test.InputError ? "bg-danger " : "bg-dark-subtle ";
+        }
+        
+        cssClass += Test.WrongIndexes.Contains(word.Index) ? " text-danger" : "";
+        <span class="@cssClass">@word.Word</span>
     }
 </div>
 
 @code {
     [Parameter] public required TypingTest Test { get; set; }
+
 }

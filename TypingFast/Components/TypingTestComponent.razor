@@ -5,6 +5,7 @@
 
     <div>
         <input type="text"
+               value="@CurrentInput"
                class="input @(_test.InputError ? "bg-danger-subtle" : "")"
                @oninput="HandleInput"/>
 
@@ -20,16 +21,21 @@
     private TypingTest _test = new(new WordsService());
     private string CurrentInput { get; set; } = "";
 
-
     private void NewTest()
     {
         _test.Restart();
     }
 
-
     private void HandleInput(ChangeEventArgs obj)
     {
         CurrentInput = obj.Value?.ToString() ?? "";
+        if (CurrentInput[CurrentInput.Length - 1] == ' ')
+        {
+            _test.ConsumeWord(CurrentInput.Substring(0, CurrentInput.Length -1));
+            CurrentInput = "";
+            return;
+        }
+
         _test.CheckWord(CurrentInput);
     }
 
