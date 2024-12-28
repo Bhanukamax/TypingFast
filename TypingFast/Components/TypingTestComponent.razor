@@ -1,5 +1,8 @@
 @using TypingFast.Models
 @using TypingFast.Services
+@* TODO: remove after testing *@
+<h2>Status: @_test.Status</h2>
+<h2>is last word: @_test.CurrentIndex @_test.GetWords().Length -> @(_test.CurrentIndex == _test.GetWords().Length)</h2>
 <div class="d-flex flex-column gap-2">
     <WordDisplay Test="@_test"/>
 
@@ -36,7 +39,7 @@
             return;
         }
 
-        _test.CheckWord(CurrentInput);
+        _test.CheckWord(CurrentInput, _test.GetWords().Length - 1 == _test.CurrentIndex);
     }
 
 }
