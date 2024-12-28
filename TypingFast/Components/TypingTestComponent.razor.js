@@ -1,5 +1,5 @@
-export class TypingTestComponent {
-  
+export function focusInput() {
+    document.getElementById('test-input').focus();
+    console.log("focused input from out")
 }
 
-window.TypingTestComponent = TypingTestComponent;

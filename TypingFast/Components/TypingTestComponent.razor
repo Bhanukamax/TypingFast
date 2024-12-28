@@ -1,5 +1,6 @@
 @using TypingFast.Models
 @using TypingFast.Services
+@inject IJSRuntime Js
 @* TODO: remove after testing *@
 <h2>Status: @_test.Status</h2>
 <h2>is last word: @_test.CurrentIndex @_test.GetWords().Length -> @(_test.CurrentIndex == _test.GetWords().Length)</h2>
@@ -8,6 +9,7 @@
 
     <div>
         <input type="text"
+               id="test-input"
                value="@CurrentInput"
                class="input @(_test.InputError ? "bg-danger-subtle" : "")"
                @oninput="HandleInput"/>
@@ -22,24 +24,48 @@
 @code{
 
     private TypingTest _test = new(new WordsService());
+    private IJSObjectReference? _module;
     private string CurrentInput { get; set; } = "";
 
     private void NewTest()
     {
         _test.Restart();
+        CurrentInput = "";
+        _ = FocusInput();
     }
+
+    private async Task FocusInput()
+    {
+        if (_module != null) await _module.InvokeVoidAsync("focusInput");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await Js.InvokeAsync<IJSObjectReference>("import", "./Components/TypingTestComponent.razor.js");
+
+            await FocusInput();
+        }
+    }
+
 
     private void HandleInput(ChangeEventArgs obj)
     {
         CurrentInput = obj.Value?.ToString() ?? "";
         if (CurrentInput[CurrentInput.Length - 1] == ' ')
         {
-            _test.ConsumeWord(CurrentInput.Substring(0, CurrentInput.Length -1));
+            _test.ConsumeWord(CurrentInput.Substring(0, CurrentInput.Length - 1));
             CurrentInput = "";
-            return;
         }
-
-        _test.CheckWord(CurrentInput, _test.GetWords().Length - 1 == _test.CurrentIndex);
+        else
+        {
+            _test.CheckWord(CurrentInput, _test.GetWords().Length - 1 == _test.CurrentIndex);
+        }
+        if (_test.Status == TestStatus.Ended)
+        {
+            CurrentInput = "";
+        }
     }
 
 }

@@ -20,11 +20,11 @@
 </div>
 
 @code {
-    [Inject] private IJSRuntime JS { get; set; } = null!;
+    [Inject] private IJSRuntime Js { get; set; } = null!;
 
     private void ToggleDarkMode()
     {
-        JS.InvokeVoidAsync("toggleDarkMode");
+        Js.InvokeVoidAsync("toggleDarkMode");
     }
 
 }
