@@ -3,22 +3,12 @@
 <div class="page">
     <main>
         <NavMenu/>
-        <article class="content px-4">
-            <button
-                @onclick="ToggleDarkMode"
-                class="btn btn-secondary mb-2">Toggle Dark Mode
-            </button>
+        <article class="content p-4">
             @Body
         </article>
     </main>
 </div>
 
 @code {
-    [Inject] private IJSRuntime Js { get; set; } = null!;
-
-    private void ToggleDarkMode()
-    {
-        Js.InvokeVoidAsync("toggleDarkMode");
-    }
 
 }

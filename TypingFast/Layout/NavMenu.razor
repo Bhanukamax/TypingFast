@@ -1,20 +1,10 @@
-﻿<nav class="navbar navbar-expand-lg  navbar-dark bg-dark" aria-label="Main navigation">
-    <div class="container-fluid">
-        <div class="navbar-collapse d-flex justify-content-center" id="navbarsExampleDefault">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Home</NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="counter">Counter</NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="weather">Weather</NavLink>
-                </li>
-            </ul>
-        </div>
+﻿@using TypingFast.Components
+<nav class="tf-navbar" aria-label="Main navigation">
+    <div class="tf-navbar-container">
+        <NavLink class="tf-nav-link" href="" Match="NavLinkMatch.All">Home</NavLink>
+        <NavLink class="tf-nav-link" href="counter">Counter</NavLink>
+        <NavLink class="tf-nav-link" href="weather">Weather</NavLink>
+        <DarkModeToggler/>
     </div>
 </nav>
 

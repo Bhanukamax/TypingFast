@@ -1,5 +1,5 @@
 @using TypingFast.Models
-<div class="border-1 border border-primary word-display p-2">
+<div class="tf-border tf-rounded tf-display">
     @foreach (var word in Test.GetWords().Select((w, i) => new { Word = w, Index = i }))
     {
         var cssClass = "px-1 ";
