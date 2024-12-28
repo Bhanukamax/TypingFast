@@ -4,8 +4,8 @@ namespace TypingFast.Models;
 
 public class TypingTest
 {
-    private readonly List<string> _words;
     private readonly WordsService _wordsService;
+    private List<string> _words;
 
     public TypingTest(WordsService wordsService)
     {
@@ -13,7 +13,7 @@ public class TypingTest
         _words = _wordsService.GetWords(10).ToList();
     }
 
-    public List<int> WrongIndexes { get; } = new();
+    public List<int> WrongIndexes { get; set; } = new();
 
     public int CurrentIndex { get; private set; }
 
@@ -33,5 +33,12 @@ public class TypingTest
         if (_words[CurrentIndex] != word) WrongIndexes.Add(CurrentIndex);
 
         CurrentIndex++;
+    }
+
+    public void Restart()
+    {
+        CurrentIndex = 0;
+        _words = _wordsService.GetWords(10).ToList();
+        WrongIndexes = new List<int>();
     }
 }

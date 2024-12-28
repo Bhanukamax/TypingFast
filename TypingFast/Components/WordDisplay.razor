@@ -1,0 +1,14 @@
+@using System.ComponentModel.DataAnnotations
+@using TypingFast.Models
+<h3>Word Display</h3>
+<div class="border-1 border border-primary word-display p-2">
+    @foreach (var word in Test.GetWords())
+    {
+        <span class="px-1">@word</span>
+    }
+</div>
+
+@code {
+    [Parameter][Required] public TypingTest Test { get; set; }
+
+}
