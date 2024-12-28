@@ -3,18 +3,18 @@ using TypingFast.Services;
 
 namespace TypingFast.Models;
 
-public enum TestStatus
+public enum TypingTestStatus
 {
-    Waiting,
-    Running,
-    Ended,
+    NotStarted,
+    Started,
+    Finished,
 }
 
 public class TypingTest
 {
     private readonly WordsService _wordsService;
     private List<string> _words;
-    public TestStatus Status { get; private set; } = TestStatus.Waiting;
+    public TypingTestStatus Status { get; private set; } = TypingTestStatus.NotStarted;
     public bool InputError { get; private set; }
 
     public TypingTest(WordsService wordsService)
@@ -35,9 +35,9 @@ public class TypingTest
 
     public void CheckWord(string matchString, bool isLastWord)
     {
-        if (Status == TestStatus.Waiting)
+        if (Status == TypingTestStatus.NotStarted)
         {
-            Status = TestStatus.Running;
+            Status = TypingTestStatus.Started;
         }
 
         if (matchString == "")
@@ -65,7 +65,7 @@ public class TypingTest
 
     private void CompleteTest()
     {
-        Status = TestStatus.Ended;
+        Status = TypingTestStatus.Finished;
     }
 
 
@@ -82,6 +82,6 @@ public class TypingTest
         _words = _wordsService.GetWords(10).ToList();
         WrongIndexes = new List<int>();
         InputError = false;
-        Status = TestStatus.Waiting;
+        Status = TypingTestStatus.NotStarted;
     }
 }

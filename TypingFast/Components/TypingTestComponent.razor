@@ -70,7 +70,7 @@
             _test.CheckWord(CurrentInput, _test.GetWords().Length - 1 == _test.CurrentIndex);
         }
 
-        if (_test.Status == TestStatus.Ended)
+        if (_test.Status == TypingTestStatus.Finished)
         {
             CurrentInput = "";
         }
