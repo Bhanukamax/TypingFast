@@ -18,7 +18,7 @@
 </div>
 
 @code {
-    [Inject] private IJSRuntime JS { get; set; }
+    [Inject] private IJSRuntime JS { get; set; } = null!;
 
     private void ToggleDarkMode()
     {
