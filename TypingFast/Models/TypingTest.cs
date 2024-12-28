@@ -31,11 +31,7 @@ public class TypingTest
     {
         return _words.ToArray();
     }
-
-    public void CheckWord(string matchString)
-    {
-        CheckWord(matchString, false);
-    }
+    
 
     public void CheckWord(string matchString, bool isLastWord)
     {

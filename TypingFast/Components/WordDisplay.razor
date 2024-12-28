@@ -3,7 +3,7 @@
     @foreach (var word in Test.GetWords().Select((w, i) => new { Word = w, Index = i }))
     {
         var cssClass = "px-1 ";
-        if (Test.CurrentIndex == word.Index)
+        if (Test.CurrentIndex == word.Index && Test.Status == TestStatus.Running)
         {
             cssClass += Test.InputError ? "bg-danger " : "bg-dark-subtle ";
         }
