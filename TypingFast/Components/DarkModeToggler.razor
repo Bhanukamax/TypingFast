@@ -1,0 +1,15 @@
+<button @onclick="ToggleDarkMode" class="tf-dark-mode-toggler">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+        <path d="M6 0a6 6 0 0 0 0 12c.628 0 1.23-.1 1.79-.28a.5.5 0 0 1 .61.61A6.002 6.002 0 0 0 12 6a6 6 0 0 0-6-6zm0 1a5 5 0 0 1 4.546 7.032.5.5 0 0 1-.61.61A5.002 5.002 0 0 1 1 6a5 5 0 0 1 5-5z"/>
+    </svg>
+     Dark Mode
+</button>
+
+@code {
+    [Inject] private IJSRuntime Js { get; set; } = null!;
+
+    private void ToggleDarkMode()
+    {
+        Js.InvokeVoidAsync("toggleDarkMode");
+    }
+}
