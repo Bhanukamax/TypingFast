@@ -66,6 +66,10 @@
     private void HandleInput(ChangeEventArgs obj)
     {
         CurrentInput = obj.Value?.ToString() ?? "";
+        if (CurrentInput.Length == 0)
+        {
+            return;
+        }
         if (CurrentInput[CurrentInput.Length - 1] == ' ')
         {
             _test.ConsumeWord(CurrentInput.Substring(0, CurrentInput.Length - 1));
